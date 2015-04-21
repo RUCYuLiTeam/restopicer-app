@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="preference_paper")
 public class PreferencePaper {
@@ -18,11 +17,12 @@ public class PreferencePaper {
 	@Column(name="id",insertable=false,updatable=false)
 	private Integer id;
 	@Column(name="user_id",insertable=true,updatable=false)
-	private Long user_id;
+	private Long userId;
 	@Column(name="item_ut",insertable=true,updatable=false)
 	private String item_ut;
 	@Column(name="rating",insertable=true,updatable=false)
-	private int rating;
+	// 0 - recommend but no rating
+	private int rating = 0;
 	@Column(name="time",insertable=true,updatable=false)
 	private Timestamp time;
 	public int getId() {
@@ -31,11 +31,11 @@ public class PreferencePaper {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getItem_ut() {
 		return item_ut;

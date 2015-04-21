@@ -14,15 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-@SuppressWarnings("serial")
 @Entity
 @Table(name="user_info")
 public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="user_id",insertable=true,updatable=false)
-	private Long userid;
+	private Long userId;
 	@Column(name="beginning_year",updatable=true)
 	private Integer beginningYear;
 	@Column(name="ending_year",updatable=true)
@@ -31,8 +29,7 @@ public class UserProfile {
 	@JoinColumn(name = "user_id",unique=true,insertable=false,updatable=false)
 	private Collection<CategoryFilter> selectedCategories = new ArrayList<CategoryFilter>();
 	public UserProfile() {}
-	public UserProfile(Long userid, Integer beginningYear,Integer endingYear) {
-        this.userid = userid;
+	public UserProfile(Integer beginningYear,Integer endingYear) {
         this.beginningYear = beginningYear;
         this.endingYear = endingYear;
     }
@@ -42,11 +39,12 @@ public class UserProfile {
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER,targetEntity=PreferenceKeyword.class)
 	@JoinColumn(name = "user_id",unique=true,insertable=false,updatable=false)
 	private Collection<PreferenceKeyword> preferenceKeywords = new ArrayList<PreferenceKeyword>();
-	public Long getUserid() {
-		return userid;
+	
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserid(Long userId) {
+		this.userId = userId;
 	}
 	public Integer getBeginningYear() {
 		return beginningYear;

@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="user_filter_category")
 public class CategoryFilter {
@@ -21,7 +20,7 @@ public class CategoryFilter {
 	@Column(name="id",insertable=false,updatable=false)
 	private Integer id;
 	@Column(name="user_id",insertable=true,updatable=false)
-	private Long userid;
+	private Long userId;
 	@Column(name="sc_code",insertable=false,updatable=false)
 	private String sc_code;
 	@ManyToOne(cascade= CascadeType.ALL,optional=false,fetch=FetchType.EAGER,targetEntity=SubjectCategory.class)
@@ -29,25 +28,26 @@ public class CategoryFilter {
 	private SubjectCategory category;
 	public CategoryFilter() {
     }
-	public CategoryFilter(Long userid, SubjectCategory category) {
-        this.userid = userid;
+	public CategoryFilter(Long userId,SubjectCategory category) {
+        this.userId = userId;
         this.sc_code = category.getSc_code();
         this.category = category;
     }
 	//0 - 1
 	@Column(name="selected",updatable=true)
 	private int selected = 1;
-	public int getId() {
+	
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getUserid() {
-		return userid;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getSc_code() {
 		return sc_code;

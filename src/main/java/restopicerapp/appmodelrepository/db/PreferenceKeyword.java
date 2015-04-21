@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table(name="preference_keyword")
 public class PreferenceKeyword {
@@ -18,7 +17,7 @@ public class PreferenceKeyword {
 	@Column(name="id",insertable=false,updatable=false)
 	private Integer id;
 	@Column(name="user_id",insertable=true,updatable=false)
-	private Long user_id;
+	private Long userId;
 	@Column(name="keyword",insertable=true,updatable=false)
 	private String keyword;
 	//0 - 1
@@ -26,17 +25,18 @@ public class PreferenceKeyword {
 	private int type;
 	@Column(name="time",insertable=true,updatable=false)
 	private Timestamp time;
-	public int getId() {
+	
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getKeyword() {
 		return keyword;
