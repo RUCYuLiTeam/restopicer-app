@@ -27,9 +27,16 @@ public class CategoryFilter {
 	@ManyToOne(cascade= CascadeType.ALL,optional=false,fetch=FetchType.EAGER,targetEntity=SubjectCategory.class)
 	@JoinColumn(name = "sc_code",unique=true,nullable=false,updatable=false)
 	private SubjectCategory category;
+	public CategoryFilter() {
+    }
+	public CategoryFilter(Long userid, SubjectCategory category) {
+        this.userid = userid;
+        this.sc_code = category.getSc_code();
+        this.category = category;
+    }
 	//0 - 1
 	@Column(name="selected",updatable=true)
-	private int selected;
+	private int selected = 1;
 	public int getId() {
 		return id;
 	}

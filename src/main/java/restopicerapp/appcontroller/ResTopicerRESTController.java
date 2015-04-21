@@ -1,62 +1,54 @@
 package restopicerapp.appcontroller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import restopicerapp.appmodelrepository.db.SubjectCategory;
+import restopicerapp.appmodelrepository.db.UserProfile;
+import restopicerapp.appservice.CategoryService;
+import restopicerapp.appservice.RecommendService;
+import restopicerapp.appservice.UserProfileService;
+
 @RestController
 public class ResTopicerRESTController {
-	@RequestMapping("/rest/subjectcategory")
-    public Long getSubjectCategory() {
-        return System.currentTimeMillis();
+	//mostly not using
+	CategoryService categoryService = new CategoryService();
+	@RequestMapping(value="/rest/subjectcategory")
+    public List<SubjectCategory> getAllSubjectCategory() {
+        return categoryService.getAllSubjectCategory();
     }
-	@RequestMapping("/rest/addsc")
-    public Long addSC() {
-        return System.currentTimeMillis();
+	//UserProfile Config and Critique
+	UserProfileService userProfileService = new UserProfileService();
+	@RequestMapping(value="/rest/newuserprofile")
+    public UserProfile newUserProfile() {
+        return userProfileService.newUserProfile();
     }
-	@RequestMapping("/rest/updatesc")
-    public Long updateSC() {
-        return System.currentTimeMillis();
+	@RequestMapping(value="/rest/userprofile")
+    public UserProfile getUserProfile(@RequestParam(value="userid",required=true) Long userId) {
+        return userProfileService.getUserProfile(userId);
     }
-	
-	@RequestMapping("/rest/adduser")
-    public Long addUser() {
-        return System.currentTimeMillis();
+	@RequestMapping(value="/rest/config")
+    public UserProfile config(@RequestParam(value="userid",required=true) Long userId,
+    		@RequestParam(value="config",required=true) UserProfile updatedUserProfile) {
+        return userProfileService.updateUserProfile(userId,updatedUserProfile);
     }
-	@RequestMapping("/rest/userprofile")
-    public Long getUserProfile() {
-        return System.currentTimeMillis();
+	@RequestMapping(value="/rest/critique")
+    public UserProfile critique(@RequestParam(value="userid",required=true) Long userId,
+    		@RequestParam(value="preference",required=true) UserProfile updatedUserProfile) {
+		return userProfileService.updateUserProfile(userId,updatedUserProfile);
     }
-	@RequestMapping("/rest/updateyear")
-    public Long updateYear() {
-        return System.currentTimeMillis();
-    }
-	
-	@RequestMapping("/rest/tagging")
-    public Long tagging() {
-        return System.currentTimeMillis();
-    }
-	@RequestMapping("/rest/rating")
-    public Long rating() {
-        return System.currentTimeMillis();
-    }
-	@RequestMapping("/rest/round")
-    public Long round() {
-        return System.currentTimeMillis();
-    }
-	@RequestMapping("/rest/critique")
-    public Long critique() {
-		//tagging
-		//rating
-        return System.currentTimeMillis();
-    }
-	
-	@RequestMapping("/rest/recommendpaper")
+	//Recommendation
+	RecommendService recommendService = new RecommendService();
+	@RequestMapping(value="/rest/recommendpaper")
     public Long recommendPaper() {
 		//recommendPaper
         return System.currentTimeMillis();
     }
-	@RequestMapping("/rest/recommendkeyword")
+	@RequestMapping(value="/rest/recommendkeyword")
     public Long recommendKeyword() {
 		//recommendKeyword
         return System.currentTimeMillis();

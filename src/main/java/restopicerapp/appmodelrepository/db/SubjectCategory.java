@@ -15,7 +15,7 @@ public class SubjectCategory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="sc_code",insertable=false,updatable=false)
 	private String sc_code;
-	@Column(name="subject_category",insertable=true,updatable=false)
+	@Column(name="subject_category")
 	private String category;
 	public String getSc_code() {
 		return sc_code;
