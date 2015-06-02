@@ -67,6 +67,7 @@ public class ResTopicerRESTController {
 	@RequestMapping(value="/rest/recommend")
     public UserProfile recommend(@RequestParam(value="userid",required=true) Long userId) {
 		//recommendPaper
+		//recommendKeyword
         return userProfileService.getUserProfile(userId);
     }
 	@RequestMapping(value="/rest/recommendpaper")
